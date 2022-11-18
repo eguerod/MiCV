@@ -4,19 +4,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import miCV.controller.ventanas.VentanaFormacionController;
+import miCV.model.Titulo;
 
 public class FormacionController implements Initializable {
 
 	@FXML
 	private BorderPane view;
+	
+	private ListProperty<Titulo> titulos  = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private ObjectProperty<Titulo> selectedTitulo = new SimpleObjectProperty<>();
 	
 	public FormacionController() {
 		try {
@@ -40,11 +47,10 @@ public class FormacionController implements Initializable {
 	
 	@FXML
     void onAddAction(ActionEvent event) {
-		Stage ventana = new Stage();
-		VentanaFormacionController controller = new VentanaFormacionController();
-		ventana.setTitle("Nuevo título");
-		ventana.setScene(new Scene(controller.getView()));
+		VentanaFormacionController ventana = new VentanaFormacionController();
 		ventana.showAndWait();
+		if(ventana.getResult()!=null)
+			titulos.add(ventana.getResult());
     }
 
     @FXML

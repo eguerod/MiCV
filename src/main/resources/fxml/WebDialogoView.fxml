@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,21 +14,14 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Numero:">
+      <Label text="URL:">
          <GridPane.margin>
             <Insets right="5.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Tipo:" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </Label>
-      <TextField fx:id="numeroText" GridPane.columnIndex="1" />
-      <ComboBox fx:id="tipoCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="webText" text="https://" GridPane.columnIndex="1" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

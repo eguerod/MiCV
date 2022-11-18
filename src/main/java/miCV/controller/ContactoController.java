@@ -4,20 +4,24 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.TextFieldTableCell;
+import miCV.controller.ventanas.NuevaWebDialog;
+import miCV.controller.ventanas.NuevoEmailDialog;
+import miCV.controller.ventanas.NuevoTelefonoDialog;
 import miCV.model.Contacto;
 import miCV.model.Email;
 import miCV.model.Telefono;
 import miCV.model.TipoTelefono;
 import miCV.model.Web;
+
 
 public class ContactoController implements Initializable {
 
@@ -44,6 +48,10 @@ public class ContactoController implements Initializable {
 
 	@FXML
 	private SplitPane view;
+	
+	private ObjectProperty<Telefono> telefonoSelected = new SimpleObjectProperty<>();
+	private ObjectProperty<Web> webSelected = new SimpleObjectProperty<>();
+	private ObjectProperty<Email> emailSelected = new SimpleObjectProperty<>();
 	
 	private Contacto model = new Contacto();
 
@@ -72,6 +80,10 @@ public class ContactoController implements Initializable {
 //		tipoCol.setCellFactory(TextFieldTableCell.forTableColumn());
 //		emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
 //		urlCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		
+		telefonoSelected.bind(telefonoTab.getSelectionModel().selectedItemProperty());
+		emailSelected.bind(emailTab.getSelectionModel().selectedItemProperty());
+		webSelected.bind(urlTab.getSelectionModel().selectedItemProperty());
 	}
 
 	public SplitPane getView() {
@@ -80,33 +92,41 @@ public class ContactoController implements Initializable {
 
 	@FXML
 	void onAddEmailAction(ActionEvent event) {
-		Dialog dialog = new Dialog<>();
-		dialog.setDialogPane(null);
+		NuevoEmailDialog dialogo = new NuevoEmailDialog();
+		dialogo.showAndWait();
+		if(dialogo.getResult()!=null)
+			model.getEmails().add(dialogo.getResult());
 	}
 
 	@FXML
 	void onAddTlfAction(ActionEvent event) {
-
+		NuevoTelefonoDialog dialogo = new NuevoTelefonoDialog();
+		dialogo.showAndWait();
+		if(dialogo.getResult()!=null)
+			model.getTelefonos().add(dialogo.getResult());
 	}
 
 	@FXML
 	void onAddUrlAction(ActionEvent event) {
-
+		NuevaWebDialog dialogo = new NuevaWebDialog();
+		dialogo.showAndWait();
+		if(dialogo.getResult()!=null)
+			model.getWebs().add(dialogo.getResult());
 	}
 
 	@FXML
 	void onDeleteEmailAction(ActionEvent event) {
-
+		model.getEmails().remove(emailSelected.get());
 	}
 
 	@FXML
 	void onDeleteTlfAction(ActionEvent event) {
-
+		model.getTelefonos().remove(telefonoSelected.get());
 	}
 
 	@FXML
 	void onDeleteUrlAction(ActionEvent event) {
-
+		model.getWebs().remove(webSelected.get());
 	}
 
 }
