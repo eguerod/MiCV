@@ -1,0 +1,25 @@
+{
+  "personal": {
+    "identificacion": "a",
+    "nombre": "a",
+    "apellidos": "a",
+    "fechaNacimiento": {
+      "year": 2022,
+      "month": 11,
+      "day": 1
+    },
+    "direccion": "a",
+    "codigoPostal": "a",
+    "localidad": "a",
+    "pais": "﻿Afganistán",
+    "nacionalidades": [
+      {
+        "denominacion": "﻿afgano"
+      }
+    ]
+  },
+  "contacto": null,
+  "formacion": [],
+  "experiencias": [],
+  "habilidades": []
+}
