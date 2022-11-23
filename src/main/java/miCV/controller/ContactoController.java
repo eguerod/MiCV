@@ -53,7 +53,7 @@ public class ContactoController implements Initializable {
 	private ObjectProperty<Web> webSelected = new SimpleObjectProperty<>();
 	private ObjectProperty<Email> emailSelected = new SimpleObjectProperty<>();
 	
-	private Contacto model = new Contacto();
+	private Contacto modelo = new Contacto();
 
 	public ContactoController() {
 		try {
@@ -67,9 +67,9 @@ public class ContactoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		telefonoTab.itemsProperty().bind(model.telefonosProperty());
-		emailTab.itemsProperty().bind(model.emailsProperty());
-		urlTab.itemsProperty().bind(model.websProperty());
+		telefonoTab.itemsProperty().bind(modelo.telefonosProperty());
+		emailTab.itemsProperty().bind(modelo.emailsProperty());
+		urlTab.itemsProperty().bind(modelo.websProperty());
 		
 		numCol.setCellValueFactory(v -> v.getValue().telefonoProperty());
 		tipoCol.setCellValueFactory(v -> v.getValue().tipoProperty());
@@ -95,7 +95,7 @@ public class ContactoController implements Initializable {
 		NuevoEmailDialog dialogo = new NuevoEmailDialog();
 		dialogo.showAndWait();
 		if(dialogo.getResult()!=null)
-			model.getEmails().add(dialogo.getResult());
+			modelo.getEmails().add(dialogo.getResult());
 	}
 
 	@FXML
@@ -103,7 +103,7 @@ public class ContactoController implements Initializable {
 		NuevoTelefonoDialog dialogo = new NuevoTelefonoDialog();
 		dialogo.showAndWait();
 		if(dialogo.getResult()!=null)
-			model.getTelefonos().add(dialogo.getResult());
+			modelo.getTelefonos().add(dialogo.getResult());
 	}
 
 	@FXML
@@ -111,22 +111,26 @@ public class ContactoController implements Initializable {
 		NuevaWebDialog dialogo = new NuevaWebDialog();
 		dialogo.showAndWait();
 		if(dialogo.getResult()!=null)
-			model.getWebs().add(dialogo.getResult());
+			modelo.getWebs().add(dialogo.getResult());
 	}
 
 	@FXML
 	void onDeleteEmailAction(ActionEvent event) {
-		model.getEmails().remove(emailSelected.get());
+		modelo.getEmails().remove(emailSelected.get());
 	}
 
 	@FXML
 	void onDeleteTlfAction(ActionEvent event) {
-		model.getTelefonos().remove(telefonoSelected.get());
+		modelo.getTelefonos().remove(telefonoSelected.get());
 	}
 
 	@FXML
 	void onDeleteUrlAction(ActionEvent event) {
-		model.getWebs().remove(webSelected.get());
+		modelo.getWebs().remove(webSelected.get());
+	}
+	
+	public Contacto getModelo() {
+		return modelo;
 	}
 
 }

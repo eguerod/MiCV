@@ -38,25 +38,25 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="denomText" GridPane.columnIndex="1" />
             <Label text="Empleador" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Hasta" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </Label>
+            <TextField fx:id="emplText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Desde" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="desdeDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Hasta" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
+            <DatePicker fx:id="hastaDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </center>

@@ -20,12 +20,12 @@
       </VBox>
    </right>
    <center>
-      <TableView BorderPane.alignment="CENTER">
+      <TableView fx:id="formacionTable" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="100.0" text="Desde" />
-          <TableColumn prefWidth="100.0" text="Hasta" />
-            <TableColumn prefWidth="100.0" text="Denominación" />
-            <TableColumn prefWidth="100.0" text="Organizador" />
+          <TableColumn fx:id="desdeColumn" prefWidth="100.0" text="Desde" />
+          <TableColumn fx:id="hastaColumn" prefWidth="100.0" text="Hasta" />
+            <TableColumn fx:id="denomColumn" prefWidth="100.0" text="Denominación" />
+            <TableColumn fx:id="organizadorColumn" prefWidth="100.0" text="Organizador" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

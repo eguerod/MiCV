@@ -85,7 +85,6 @@ public class MainController implements Initializable {
 	@FXML
 	void onAbrirAction(ActionEvent event) {
 		try {
-			
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Resource File");
 			fileChooser.setInitialDirectory(new File(getClass().getResource("/json/").toURI()));
@@ -106,6 +105,10 @@ public class MainController implements Initializable {
 		try {
 			CV cv = new CV();
 			cv.setPersonal(personalController.getModelo());
+			cv.setContacto(contactoController.getModelo());
+			cv.setFormacion(formacionController.getTitulos());
+			cv.setExperiencias(experienciaController.getExperiencias());
+			//TODO Cargar distintas pestañas
 			
 			String json = gson.toJson(cv, CV.class);
 
@@ -182,6 +185,8 @@ public class MainController implements Initializable {
 	}
 
 	private void nuevoCV() {
+		//TODO Cambiar esto a que sea un cambio en las properties, para evitar cargar interfaces nuevas
+		// Acordarte de unbindear anters de bindear de nuevo
 		personalController = new PersonalController();
 		contactoController = new ContactoController();
 		formacionController = new FormacionController();

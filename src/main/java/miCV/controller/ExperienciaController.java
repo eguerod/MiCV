@@ -2,22 +2,52 @@ package miCV.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 import miCV.controller.ventanas.VentanaExperienciaController;
+import miCV.model.Experiencia;
+import miCV.model.Titulo;
 
 public class ExperienciaController implements Initializable {
 
 	@FXML
+	private TableColumn<Experiencia, String> denomColumn;
+
+	@FXML
+	private TableColumn<Experiencia, LocalDate> desdeColumn;
+
+	@FXML
+	private TableColumn<Experiencia, String> empleadorColumn;
+
+	@FXML
+	private TableView<Experiencia> experienciaTable;
+
+	@FXML
+	private TableColumn<Experiencia, LocalDate> hastaColumn;
+
+	@FXML
 	private BorderPane view;
-	
+
+	private ListProperty<Experiencia> experiencias = new SimpleListProperty<>(FXCollections.observableArrayList());
+	private ObjectProperty<Experiencia> selectedExperiencia = new SimpleObjectProperty<>();
+
 	public ExperienciaController() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ExperienciaView.fxml"));
@@ -30,26 +60,36 @@ public class ExperienciaController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		experienciaTable.itemsProperty().bind(experiencias);
+		selectedExperiencia.bind(experienciaTable.getSelectionModel().selectedItemProperty());
 
+		hastaColumn.setCellValueFactory(v -> v.getValue().hastaProperty());
+		desdeColumn.setCellValueFactory(v -> v.getValue().desdeProperty());
+		denomColumn.setCellValueFactory(v -> v.getValue().denominacionProperty());
+		empleadorColumn.setCellValueFactory(v -> v.getValue().empleadorProperty());
+
+		hastaColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
+		desdeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
 	}
-	
+
 	public BorderPane getView() {
 		return view;
 	}
-	
+
 	@FXML
-    void onAddAction(ActionEvent event) {
-		Stage ventana = new Stage();
-		VentanaExperienciaController controller = new VentanaExperienciaController();
-		ventana.setTitle("Nueva experiencia");
-		ventana.setScene(new Scene(controller.getView()));
+	void onAddAction(ActionEvent event) {
+		VentanaExperienciaController ventana = new VentanaExperienciaController();
 		ventana.showAndWait();
-    }
+		if (ventana.getResult() != null)
+			experiencias.add(ventana.getResult());
+	}
 
-    @FXML
-    void onDeleteAction(ActionEvent event) {
-
-    }
-
+	@FXML
+	void onDeleteAction(ActionEvent event) {
+		experiencias.remove(selectedExperiencia.get());
+	}
+	
+	public ListProperty<Experiencia> getExperiencias() {
+		return experiencias;
+	}
 }

@@ -35,17 +35,17 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="orgText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Hasta" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
-            </Label>
             <Label text="Desde" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
             <DatePicker fx:id="desdeDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Hasta" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin>
+            </Label>
             <DatePicker fx:id="hastaDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
