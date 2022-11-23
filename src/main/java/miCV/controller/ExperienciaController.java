@@ -14,16 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import miCV.controller.ventanas.VentanaExperienciaController;
 import miCV.model.Experiencia;
-import miCV.model.Titulo;
 
 public class ExperienciaController implements Initializable {
 
@@ -60,7 +57,7 @@ public class ExperienciaController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		experienciaTable.itemsProperty().bind(experiencias);
+		experienciaTable.itemsProperty().bindBidirectional(experiencias);
 		selectedExperiencia.bind(experienciaTable.getSelectionModel().selectedItemProperty());
 
 		hastaColumn.setCellValueFactory(v -> v.getValue().hastaProperty());

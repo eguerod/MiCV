@@ -8,18 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <BorderPane fx:id="view" prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <HBox alignment="BOTTOM_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button defaultButton="true" mnemonicParsing="false" text="Crear" />
-            <Button cancelButton="true" mnemonicParsing="false" text="Cancelar" />
-         </children>
-      </HBox>
-   </bottom>
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -38,20 +29,20 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" />
+            <TextField fx:id="denomText" GridPane.columnIndex="1" GridPane.columnSpan="2" />
             <Label text="Nivel" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ComboBox fx:id="nivelCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onRemoveAction" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Button>
             <Label text="Certificación" GridPane.rowIndex="2" />
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+            <TextField fx:id="certifText" maxWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>
