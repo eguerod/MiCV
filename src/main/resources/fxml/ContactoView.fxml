@@ -15,7 +15,7 @@
          <content>
             <HBox minHeight="100.0" minWidth="200.0" spacing="5.0">
                <children>
-                  <TableView fx:id="telefonoTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="telefonoTab" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="numCol" prefWidth="75.0" text="Número" />
                       <TableColumn fx:id="tipoCol" prefWidth="75.0" text="Tipo" />
@@ -38,7 +38,7 @@
          <content>
             <HBox minHeight="100.0" minWidth="200.0" spacing="5.0">
                <children>
-                  <TableView fx:id="emailTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="emailTab" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="emailCol" prefWidth="75.0" text="E-mail" />
                      </columns>
@@ -60,7 +60,7 @@
          <content>
             <HBox minHeight="100.0" minWidth="200.0" spacing="5.0">
                <children>
-                  <TableView fx:id="urlTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="urlTab" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="urlCol" prefWidth="75.0" text="URL" />
                      </columns>

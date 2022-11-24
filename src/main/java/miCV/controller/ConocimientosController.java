@@ -9,13 +9,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
+//import javafx.util.StringConverter;
 import miCV.controller.ventanas.VentanaConocimientoController;
 import miCV.controller.ventanas.VentanaIdiomaController;
 import miCV.model.Conocimiento;
@@ -50,11 +53,31 @@ public class ConocimientosController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		conocimientosTable.itemsProperty().bind(conocimientos);
+		conocimientosTable.itemsProperty().bindBidirectional(conocimientos);
 		selectedConocimiento.bind(conocimientosTable.getSelectionModel().selectedItemProperty());
 
 		denomColumn.setCellValueFactory(v -> v.getValue().denominacionProperty());
 		nivelColumn.setCellValueFactory(v -> v.getValue().nivelProperty());
+		
+		denomColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//		nivelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Nivel>() {
+//
+//			@Override
+//			public String toString(Nivel object) {
+//				return object.toString();
+//			}
+//
+//			@Override
+//			public Nivel fromString(String string) {
+//				if(string.toUpperCase().equals("AVANZADO"))
+//					return Nivel.AVANZADO;
+//				else if(string.toUpperCase().equals("MEDIO"))
+//					return Nivel.MEDIO;
+//				else if(string.toUpperCase().equals("BASICO"))
+//					return Nivel.BASICO;
+//				else return null;
+//			}
+//		}));
 	}
 
 	public BorderPane getView() {
@@ -84,6 +107,14 @@ public class ConocimientosController implements Initializable {
 
 	public ListProperty<Conocimiento> getConocimientos() {
 		return conocimientos;
+	}
+	
+	protected void vaciar() {
+		conocimientos.clear();
+	}
+	
+	protected void setConocimientos(ObservableList<Conocimiento> c) {
+		conocimientos.addAll(c);
 	}
 
 }

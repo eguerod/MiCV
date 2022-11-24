@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import miCV.controller.ventanas.NuevaWebDialog;
 import miCV.controller.ventanas.NuevoEmailDialog;
 import miCV.controller.ventanas.NuevoTelefonoDialog;
@@ -67,20 +68,34 @@ public class ContactoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		telefonoTab.itemsProperty().bind(modelo.telefonosProperty());
-		emailTab.itemsProperty().bind(modelo.emailsProperty());
-		urlTab.itemsProperty().bind(modelo.websProperty());
+		telefonoTab.itemsProperty().bindBidirectional(modelo.telefonosProperty());
+		emailTab.itemsProperty().bindBidirectional(modelo.emailsProperty());
+		urlTab.itemsProperty().bindBidirectional(modelo.websProperty());
 		
 		numCol.setCellValueFactory(v -> v.getValue().telefonoProperty());
 		tipoCol.setCellValueFactory(v -> v.getValue().tipoProperty());
 		emailCol.setCellValueFactory(v -> v.getValue().direccionProperty());
 		urlCol.setCellValueFactory(v -> v.getValue().urlProperty());
 		
-//		numCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//		tipoCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//		emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//		urlCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		
+		numCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		urlCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//		tipoCol.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Nivel>() {
+//
+//			@Override
+//			public String toString(TipoTelefono object) {
+//				return object.toString();
+//			}
+//
+//			@Override
+//			public TipoTelefono fromString(String string) {
+//				if(string.toUpperCase().equals("DOMICILIO"))
+//					return TipoTelefono.DOMICILIO;
+//				else if(string.toUpperCase().equals("MOVIL"))
+//					return TipoTelefono.MOVIL;
+//				else return null;
+//			}
+//		}));
 		telefonoSelected.bind(telefonoTab.getSelectionModel().selectedItemProperty());
 		emailSelected.bind(emailTab.getSelectionModel().selectedItemProperty());
 		webSelected.bind(urlTab.getSelectionModel().selectedItemProperty());
@@ -131,6 +146,18 @@ public class ContactoController implements Initializable {
 	
 	public Contacto getModelo() {
 		return modelo;
+	}
+	
+	protected void vaciar() {
+		modelo.getTelefonos().clear();
+		modelo.getEmails().clear();
+		modelo.getWebs().clear();
+	}
+	
+	protected void setContacto(Contacto p) {
+		modelo.setTelefonos(p.getTelefonos());
+		modelo.setEmails(p.getEmails());
+		modelo.setWebs(p.getWebs());
 	}
 
 }

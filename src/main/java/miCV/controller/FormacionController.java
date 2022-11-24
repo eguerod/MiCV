@@ -10,6 +10,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +58,7 @@ public class FormacionController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		formacionTable.itemsProperty().bind(titulos);
+		formacionTable.itemsProperty().bindBidirectional(titulos);
 		selectedTitulo.bind(formacionTable.getSelectionModel().selectedItemProperty());
 		
 		hastaColumn.setCellValueFactory(v -> v.getValue().hastaProperty());
@@ -67,6 +68,8 @@ public class FormacionController implements Initializable {
 		
 		hastaColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
 		desdeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
+		denomColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		organizadorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
 	public BorderPane getView() {
@@ -88,6 +91,14 @@ public class FormacionController implements Initializable {
 	
 	public ListProperty<Titulo> getTitulos() {
 		return titulos;
+	}
+	
+	protected void vaciar() {
+		titulos.clear();
+	}
+	
+	protected void setFormacion(ObservableList<Titulo> f) {
+		titulos.addAll(f);
 	}
 
 }

@@ -20,7 +20,7 @@
       </VBox>
    </right>
    <center>
-      <TableView fx:id="formacionTable" BorderPane.alignment="CENTER">
+      <TableView fx:id="formacionTable" editable="true" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="desdeColumn" prefWidth="100.0" text="Desde" />
           <TableColumn fx:id="hastaColumn" prefWidth="100.0" text="Hasta" />

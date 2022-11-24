@@ -74,24 +74,24 @@ public class PersonalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		modelo.identificacionProperty().bind(identificacionText.textProperty());
+		modelo.identificacionProperty().bindBidirectional(identificacionText.textProperty());
 		
-		modelo.nombreProperty().bind(nombreText.textProperty());
+		modelo.nombreProperty().bindBidirectional(nombreText.textProperty());
 		
-		modelo.apellidosProperty().bind(apellidosText.textProperty());
+		modelo.apellidosProperty().bindBidirectional(apellidosText.textProperty());
 		
-		modelo.fechaNacimientoProperty().bind(nacimientoDate.valueProperty());
+		modelo.fechaNacimientoProperty().bindBidirectional(nacimientoDate.valueProperty());
 		
-		modelo.direccionProperty().bind(direccionText.textProperty());
+		modelo.direccionProperty().bindBidirectional(direccionText.textProperty());
 		
-		modelo.codigoPostalProperty().bind(codPostalText.textProperty());
+		modelo.codigoPostalProperty().bindBidirectional(codPostalText.textProperty());
 		
-		modelo.localidadProperty().bind(localidadText.textProperty());
+		modelo.localidadProperty().bindBidirectional(localidadText.textProperty());
 		
 		modelo.paisProperty().bind(paisCombo.getSelectionModel().selectedItemProperty());
 		paisCombo.getItems().addAll(readFromFile("/csv/paises.csv"));
 		
-		nacionalidadList.itemsProperty().bind(modelo.nacionalidadesProperty());
+		nacionalidadList.itemsProperty().bindBidirectional(modelo.nacionalidadesProperty());
 		nacionalidadSelected.bind(nacionalidadList.getSelectionModel().selectedItemProperty());
 	}
 
@@ -133,5 +133,29 @@ public class PersonalController implements Initializable {
 	
 	public Personal getModelo() {
 		return modelo;
+	}
+	
+	protected void vaciar() {
+		identificacionText.setText("");
+		nombreText.setText("");
+		apellidosText.setText("");
+		nacimientoDate.setValue(null);
+		direccionText.setText("");
+		codPostalText.setText("");
+		localidadText.setText("");
+		paisCombo.getSelectionModel().clearSelection();
+		modelo.getNacionalidades().clear();
+	}
+	
+	protected void setPersonal(Personal p) {
+		modelo.setIdentificacion(p.getIdentificacion());
+		modelo.setNombre(p.getNombre());
+		modelo.setApellidos(p.getApellidos());
+		modelo.setFechaNacimiento(p.getFechaNacimiento());
+		modelo.setDireccion(p.getDireccion());
+		modelo.setCodigoPostal(p.getCodigoPostal());
+		modelo.setLocalidad(p.getLocalidad());
+		paisCombo.getSelectionModel().select(p.getPais());
+		modelo.getNacionalidades().addAll(p.getNacionalidades());
 	}
 }

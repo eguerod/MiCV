@@ -1,0 +1,87 @@
+{
+  "personal": {
+    "identificacion": "54063242V",
+    "nombre": "Eduardo",
+    "apellidos": "Guerra Rodríguez",
+    "fechaNacimiento": {
+      "year": 1999,
+      "month": 5,
+      "day": 13
+    },
+    "direccion": "C/ El Edén, 10",
+    "codigoPostal": "38276",
+    "localidad": "San Cristóbal de La Laguna",
+    "pais": "España",
+    "nacionalidades": [
+      {
+        "denominacion": "español"
+      }
+    ]
+  },
+  "contacto": {
+    "telefonos": [
+      {
+        "telefono": "618295409",
+        "tipo": "MOVIL"
+      }
+    ],
+    "emails": [
+      {
+        "direccion": "eduardo.guerra.rguez@gmail.com"
+      }
+    ],
+    "webs": [
+      {
+        "url": ""
+      }
+    ]
+  },
+  "formacion": [
+    {
+      "desde": {
+        "year": 2021,
+        "month": 9,
+        "day": 10
+      },
+      "hasta": {
+        "year": 2023,
+        "month": 6,
+        "day": 23
+      },
+      "denominacion": "Graduado en DAM",
+      "organizador": "IES Perez Minik"
+    }
+  ],
+  "experiencias": [
+    {
+      "desde": {
+        "year": 2019,
+        "month": 2,
+        "day": 2
+      },
+      "hasta": {
+        "year": 2022,
+        "month": 6,
+        "day": 29
+      },
+      "denominacion": "Clases particulares",
+      "empleador": "Privado"
+    }
+  ],
+  "habilidades": [
+    {
+      "denominacion": "Matemáticas",
+      "nivel": "AVANZADO"
+    },
+    {
+      "denominacion": "Inglés",
+      "nivel": "AVANZADO"
+    },
+    {
+      "denominacion": "Francés",
+      "nivel": "MEDIO"
+    }
+  ]
+} }
+  ]
+}

@@ -10,6 +10,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +68,8 @@ public class ExperienciaController implements Initializable {
 
 		hastaColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
 		desdeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateStringConverter()));
+		denomColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		empleadorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
 	public BorderPane getView() {
@@ -88,5 +91,13 @@ public class ExperienciaController implements Initializable {
 	
 	public ListProperty<Experiencia> getExperiencias() {
 		return experiencias;
+	}
+	
+	protected void vaciar() {
+		experiencias.clear();
+	}
+	
+	protected void setExperiencias(ObservableList<Experiencia> e) {
+		experiencias.addAll(e);
 	}
 }
